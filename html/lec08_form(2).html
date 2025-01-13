@@ -9,6 +9,229 @@
     <input type="color" id="head" name="head" value="#e66465" />
     <input type="number" min="3" max="10" />
     <input type="range" min="3" max="10" />
-    <textarea name="" id="" cols="20" rows="3"></textarea>
+    <textarea name="" id="" cols="20" rows="3"></textarea><br />
+    <input type="date" value="2025-01-01" min="2025-01-01" max="2025-01-13" />
+    <input type="month" min="2025-10" />
+    <input type="time" value="16:10" /><br />
+
+    <!-- checkbox : name이 같은 여러개 값 선택 -->
+    <input type="checkbox" value="1" id="jja" name="lunch" />
+    <label for="jja">짜장면</label>
+    <input type="checkbox" value="2" id="bok" name="lunch" />
+    <label for="bok">볶음밥</label>
+
+    <!-- radio : name이 같은 것중에 하나만 -->
+    <input type="radio" value="1" id="seoul" name="addr" />
+    <label for="seoul">서울</label>
+    <input type="radio" value="2" id="dae" name="addr" />
+    <label for="dae">대전</label><br />
+
+    <select name="user_select" id="user_select">
+      <option value="">선택하기</option>
+      <option value="1">다이제</option>
+      <option value="2">콘치</option></select
+    ><br />
+
+    <progress max="100" value="7"></progress><br />
+
+    <form action="#" method="get" name="testFrm">
+      <input type="text" required />
+      <button type="button" onclick="alert('안녕')"></button>
+      <button type="submit">제출</button>
+    </form>
+
+    <h1>피자 주문하기</h1>
+    <form action="">
+      <fieldset>
+        <legend>고객정보</legend>
+        <label for="c_name">고객명</label>
+        <input type="text" id="c_name" /><br />
+        <label for="c_phone">전화번호</label>
+        <input type="text" id="c_phone" /><br />
+        <label for="E-mail">E-mail</label>
+        <input type="email" id="E-mail" /><br />
+      </fieldset>
+      <fieldset>
+        <legend>피자 사이즈</legend>
+        <input type="radio" value="1" id="small" name="size" />
+        <label for="small">Small</label><br />
+        <input type="radio" value="2" id="Medium" name="size" />
+        <label for="Medium">Medium</label><br />
+        <input type="radio" value="3" id="Large" name="size" />
+        <label for="Large">Large</label>
+      </fieldset>
+      <fieldset>
+        <legend>토핑 선택</legend>
+        <input type="checkbox" value="1" id="sh" />
+        <label for="sh">새우</label><br />
+        <input type="checkbox" value="2" id="sp" />
+        <label for="sp">고구마</label><br />
+        <input type="checkbox" value="3" id="po" />
+        <label for="po">감자</label><br />
+        <input type="checkbox" value="4" id="pa" />
+        <label for="pa">파인애플</label>
+      </fieldset>
+      <br />
+      <label for="delivery_time">희망 배송 시간</label>
+      <input type="time" id="delivery_time" /><br /><br />
+      <button type="submit">주문하기</button>
+    </form>
+    <br />
+
+    <h1>납품 대장</h1>
+    <form action="">
+      <fieldset>
+        <legend>납품자 정보</legend>
+        <label for="납품자명">1. 납품자명 : </label>
+        <input type="text" id="납품자명" placeholder="name" /><br />
+        <label for="납품자이메일">2. email : </label>
+        <input type="email" id="납품자이메일" placeholder="hkd@naver.com" />
+      </fieldset>
+      <fieldset>
+        <legend>납품정보</legend>
+        <table>
+          <ul>
+            <li>
+              <label for="상품명">상품명 : </label>
+              <input type="text" id="상품명" />
+            </li>
+            <li>
+              <label for="납품수량">납품수량 : </label>
+              <input type="text" id="납품수량" placeholder="최소 100" />
+            </li>
+            <li>
+              <label for="납품등급">납품등급 : </label>
+              <input type="range" min="1" max="10" value="5" />
+            </li>
+            <li>
+              <label for="">기타사항 : </label>
+              <textarea name="" id="" cols="20" rows="2"></textarea><br />
+            </li>
+          </ul>
+        </table>
+      </fieldset>
+      <button type="submit">send message</button>
+    </form>
+    <br />
+
+    <h1>회원가입</h1>
+    <form action="">
+      <fieldset>
+        <legend>필수 입력 사항</legend>
+        <table>
+          <tr>
+            <th>ID</th>
+            <td>
+              <input type="text" placeholder="아이디 10글자 이내" required />
+              <button>중복 확인</button>
+            </td>
+          </tr>
+          <tr>
+            <th>비밀번호</th>
+            <td>
+              <input
+                type="text"
+                placeholder="영문, 숫자 포함 8자리 이상"
+                required
+              />
+            </td>
+          </tr>
+          <tr>
+            <th>비밀번호 확인</th>
+            <td><input type="text" required /></td>
+          </tr>
+          <tr>
+            <th>Email</th>
+            <td>
+              <input type="text" required />
+              <select name="email_select" id="email_select">
+                <option value="">직접입력</option>
+                <option value="1">네이버</option>
+                <option value="2">구글</option>
+              </select>
+            </td>
+          </tr>
+        </table>
+      </fieldset>
+      <fieldset>
+        <legend>추가 정보</legend>
+        <label for="프로필 사진">프로필 사진 : </label>
+        <input type="file" /><br /><br />
+        <label for="성별">성별 : </label>
+        <input type="radio" value="1" id="male" name="gender" />
+        <label for="male">남자</label>
+        <input type="radio" value="2" id="female" name="gender" />
+        <label for="male">여자</label><br /><br />
+        <label for="생년월일">생년월일 : </label>
+        <input type="date" /><br /><br />
+        <label for="취미">취미</label><br />
+        <input type="checkbox" value="1" id="야구" name="취미" />
+        <label for="야구">야구</label>
+        <input type="checkbox" value="1" id="야구" name="취미" />
+        <label for="야구">야구</label>
+        <input type="checkbox" value="3" id="축구" name="취미" />
+        <label for="축구">축구</label><br />
+        <input type="checkbox" value="4" id="공부" name="취미" />
+        <label for="공부">공부</label>
+        <input type="checkbox" value="5" id="음악감상" name="취미" />
+        <label for="음악감상">음악감상</label><br />
+        <input type="checkbox" value="6" id="기타" name="취미" />
+        <label for="기타">기타 : </label>
+        <input type="text" /><br /><br />
+        <label for="자기소개">자기소개</label><br />
+        <textarea name="" id="자기소개" cols="50" rows="5"></textarea>
+      </fieldset>
+      <br />
+      <button type="submit">회원가입</button>
+      <button type="reset">다시입력</button>
+      <button>이전으로</button>
+    </form>
+    <br />
+
+    <h1>백엔드 개발자 지원서</h1>
+    <p>
+      Java, Spring, DataBase에 대한 기술적 이해와 경험이 있는 분을 찾습니다.
+    </p>
+    <hr />
+    <p><b>개인정보</b></p>
+    <label for="지원자 이름"
+      >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;이름&nbsp;&nbsp;&nbsp;</label
+    >
+    <input
+      type="text"
+      id="지원자 이름"
+      placeholder="공백없이 입력하세요."
+    /><br />
+    <label for="지원자 연락처"
+      >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;연락처</label
+    >
+    <input type="text" id="지원자 연락처" /><br /><br />
+    <p><b>지원 분야</b></p>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <input type="radio" id="백엔드 개발" name="지원분야" />
+    <label for="백엔드 개발" name="지원분야"
+      >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;백엔드 개발</label
+    ><br />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <input type="radio" id="서버 개발" name="지원분야" />
+    <label for="서버 개발" name="지원분야"
+      >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;서버 개발</label
+    ><br />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <input type="radio" id="개발 환경 개선" name="지원분야" />
+    <label for="개발 환경 개선" name="지원분야"
+      >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;개발 환경 개선</label
+    ><br /><br />
+    <p><b>지원동기</b></p>
+    <textarea
+      name=""
+      id=""
+      cols="40"
+      rows="5"
+      placeholder="지원 동기를 간략히 써주세요."
+    ></textarea
+    ><br />
+    <button type="submit">접수하기</button>
+    <button type="reset">다시쓰기</button>
   </body>
 </html>
