@@ -30,5 +30,17 @@
     <br />
     <button type="button" id="b1">버튼1</button>
     <button type="button" id="b2">버튼2</button>
+    <style>
+      input[name="user_id"]:focus {
+        background-color: rgb(170, 170, 170);
+      }
+      input[type="text"]:disabled {
+        background-color: crimson;
+      }
+    </style>
+    <div id="condition">
+      <input type="text" name="user_id" />
+      <input type="text" name="user_name" disabled />
+    </div>
   </body>
 </html>
