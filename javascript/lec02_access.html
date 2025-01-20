@@ -192,5 +192,60 @@
         document.getElementById("test1").innerText = "<h1>Ohhhh</h1>";
       }
     </script>
+    <h1>HTML 태그에 접근 테스트</h1>
+    <style>
+      #printDiv {
+        border: 1px solid lavender;
+        background-color: cornsilk;
+        width: 400px;
+        height: 180px;
+      }
+    </style>
+    <label for="name">구매자 : </label>
+    <input type="text" id="name" placeholder="구매자 이름을 입력하세요" />
+    <br /><br />
+    <label for="product">상품명 : </label>
+    <input type="text" id="product" placeholder="구매 상품명을 입력하세요" />
+    <br /><br />
+    <label for="price">가격 : </label>
+    <input
+      type="text"
+      name="price"
+      id="price"
+      placeholder="구매 가격을 입력하세요"
+    />
+    <br /><br />
+    <input type="button" value="입력값 출력하기" onclick="inputPrint();" />
+    <br /><br />
+    <div id="printDiv"></div>
+    <script>
+      function inputPrint() {
+        let a = document.getElementsByTagName("input")[0].value;
+        let b = document.getElementById("product").value;
+        let c = document.getElementsByName("price")[0].value;
+        document.getElementById("printDiv").innerHTML =
+          "구매자 : " + a + "<br>상품명 : " + b + "<br>가격 : " + c + "원";
+      }
+    </script>
+    <h1>input의 type 바꾸기</h1>
+    <form>
+      <fieldset>
+        <legend>사용자 정보</legend>
+        <label for="user_id">아이디 : </label>
+        <input type="text" id="user_id" name="user_id" /><br />
+        <label for="user_pw">비밀번호 : </label>
+        <input type="password" id="user_pw" name="user_pw" />
+        <input type="button" value="보기" onclick="showPw();" />
+        <input type="button" value="숨기기" onclick="hidePw();" />
+      </fieldset>
+    </form>
+    <script>
+      function showPw() {
+        document.getElementById("user_pw").type = "text";
+      }
+      function hidePw() {
+        document.getElementById("user_pw").type = "password";
+      }
+    </script>
   </body>
 </html>

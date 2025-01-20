@@ -124,5 +124,38 @@
         alert(num1 + num2);
       }
     </script>
+    <h1>자라나라 스폰지밥</h1>
+    <button onclick="changeSize1();">+</button><br />
+    <img
+      class="sponge"
+      src="../resources/sponge.png"
+      width="100"
+      height="100"
+    />
+    <script>
+      function changeSize1() {
+        const imgTarget = document.getElementsByClassName("sponge")[0];
+        const imgWidth = imgTarget.width;
+        const imgHeight = imgTarget.height;
+        imgTarget.width = parseInt(imgWidth) + 100;
+        imgTarget.height = parseInt(imgHeight) + 100;
+      }
+    </script>
+    <h3>이미지 크기 조정</h3>
+    <label for="width_num">가로 : </label>
+    <input type="number" id="width_num" /><br />
+    <label for="height_num">세로 : </label>
+    <input type="number" id="height_num" />
+    <button onclick="changeSize2();">변경</button><br /><br />
+    <img id="dung" src="../resources/dung.png" width="100" height="100" />
+    <script>
+      function changeSize2() {
+        let el = document.getElementById("dung");
+        let user_width = Number(document.getElementById("width_num").value);
+        let user_height = Number(document.getElementById("height_num").value);
+        el.width = user_width;
+        el.height = user_height;
+      }
+    </script>
   </body>
 </html>

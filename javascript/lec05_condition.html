@@ -213,5 +213,23 @@
         }
       }
     </script>
+    <h1>날씨 확인</h1>
+    계절<input type="radio" id="봄" name="season" value="1" />
+    <label for="봄">봄</label>
+    <input type="radio" id="여름" name="season" value="2" />
+    <label for="여름">여름</label>
+    <input type="radio" id="가을" name="season" value="3" />
+    <label for="가을">가을</label>
+    <input type="radio" id="겨울" name="season" value="4" />
+    <label for="겨울">겨울</label><br />
+    <label for="기온">기온</label>
+    <input type="number" id="기온" />
+    <button id="날씨확인" onclick="checkWeather();">확인</button>
+    <script>
+      function checkWeather() {
+        let selectSeason = document.getElementsByName("season").value;
+        console.log(typeof selectSeason);
+      }
+    </script>
   </body>
 </html>
