@@ -227,8 +227,146 @@
     <button id="날씨확인" onclick="checkWeather();">확인</button>
     <script>
       function checkWeather() {
-        let selectSeason = document.getElementsByName("season").value;
-        console.log(typeof selectSeason);
+        let radio = document.querySelectorAll('input[name="season"]');
+        let count = 0;
+        for (let i = 0; i < radio.length; i++) {
+          if (radio[i].checked) {
+            count = 1;
+          }
+        }
+        if (count == 1) {
+          let season = document.querySelector(
+            'input[name="season"]:checked'
+          ).value;
+          let temp = document.getElementById("temp").value;
+          let result = "";
+          if (season == 1) {
+            result += "봄";
+          } else if (season == 2) {
+            result += "여름";
+            if (temp >= 35) {
+              result += " 폭염 경보";
+            } else if (temp >= 33) {
+              result += "폭염 주의보";
+            }
+          } else if (season == 3) {
+            result += "가을";
+          } else if (season == 4) {
+            result += "겨울";
+            if (temp <= -15) {
+              result += "한파 경보";
+            } else if (temp <= -12) {
+              result += "한파 주의보";
+            }
+          }
+          alert(result);
+        } else {
+          alert("봄, 여름, 가을, 겨울중 하나를 선택하세요.");
+        }
+      }
+    </script>
+    <h3>스폰지밥, 뚱이, 징징이</h3>
+    <select id="char_select" onchange="changeCharacter();">
+      <option value="0">선택하기</option>
+      <option value="1">스폰지밥</option>
+      <option value="2">뚱이</option>
+      <option value="3">사람</option>
+    </select>
+    <style>
+      #char_img {
+        border-radius: 50px;
+        border: 2px solid yellowgreen;
+        width: 100px;
+        height: 100px;
+      }
+    </style>
+    <img id="char_img" src="../resources/sponge.png" />
+    <script>
+      function changeCharacter() {
+        let charNum = document.getElementById("char_select");
+        charNum = charNum.value;
+        charNum = Number(charNum);
+        let srcText = "";
+        switch (charNum) {
+          case 2:
+            srcText = "../resources/dung.png";
+            break;
+          case 3:
+            srcText = "../resources/human.png";
+            break;
+          default:
+            srcText = "../resources/sponge.png";
+            break;
+        }
+        console.log(srcText);
+        document.getElementById("char_img").src = srcText;
+      }
+    </script>
+    <h1>콤보세트</h1>
+    <label for="setCnt">개수 : </label>
+    <input type="number" id="setCnt" />
+    <input type="button" id="cgc_btn" value="주문" />
+    <br /><br />
+    <div id="cgc_div"></div>
+    <script>
+      document.querySelector("#cgc_btn").onclick = function () {
+        const num = document.querySelector("#setCnt").value;
+        let imgList = "";
+        for (let i = 0; i < num; i++) {
+          imgList += '<img src="../resources/popcorn.png">';
+          for (let j = 0; j < 3; j++) {
+            imgList += '<img src="../resources/coke.png">';
+          }
+          imgList += "<br>";
+        }
+        document.getElementById("cgc_div").innerHTML = imgList;
+      };
+    </script>
+    <h1>행 열 갯수 각각 입력받아 테이블 만들기</h1>
+    <button onclick="createTable();">테이블 생성</button>
+    <script>
+      function createTable() {
+        let row = prompt("테이블 행의 갯수는?");
+        let column = prompt("테이블 열의 갯수는?");
+        let count = 1;
+        let result = '<table border="1">';
+        for (let i = 0; i < row; i++) {
+          result += "<tr>";
+          for (let j = 0; j < column; j++) {
+            result += "<td>";
+            result += count;
+            result += "</td>";
+            count++;
+          }
+          result += "</tr>";
+        }
+        result += "</table>";
+        document.write(result);
+      }
+    </script>
+    <h1>귤농장</h1>
+    <button onclick="getGul();">체험시작</button>
+    <div id="basket_div"></div>
+    <style>
+      figure {
+        display: inline-block;
+      }
+    </style>
+    <script>
+      function getGul() {
+        let basket = 0;
+        let ele = document.getElementById("basket_div");
+        while (true) {
+          basket += 10;
+          ele.innerHTML +=
+            "<figure><figcaption>귤 " +
+            basket +
+            'g</figcaption><img src="../resources/gul.png"></figure>';
+          if (basket == 200) {
+            ele.innerHTML += "<h1>체험종료</h1>";
+            break;
+          }
+        }
       }
     </script>
   </body>
