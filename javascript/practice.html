@@ -85,5 +85,32 @@
       </tr>
     </table>
     <div id="result_div"></div>
+    <script>
+      const printDiv = () => {
+        let weight = Number(document.getElementById("user_weight").value);
+        let height = Number(document.getElementById("user_height").value);
+        let bmi = weight / (height * height);
+        changeBack(bmi);
+        document.getElementById("result_div").innerHTML = "";
+        document.getElementById("result_div").innerHTML += Math.round(bmi);
+      };
+      const changeBack = (bmi) => {
+        if (bmi < 18.5) {
+          document.getElementById("result_div").style.backgroundColor =
+            "skyblue";
+        } else if (18.5 <= bmi && bmi < 25) {
+          document.getElementById("result_div").style.backgroundColor =
+            "yellowgreen";
+        } else if (25 <= bmi && bmi < 30) {
+          document.getElementById("result_div").style.backgroundColor = "gold";
+        } else if (30 <= bmi && bmi < 35) {
+          document.getElementById("result_div").style.backgroundColor =
+            "orange";
+        } else if (bmi > 35) {
+          document.getElementById("result_div").style.backgroundColor =
+            "crimson";
+        }
+      };
+    </script>
   </body>
 </html>

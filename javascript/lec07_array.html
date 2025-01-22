@@ -228,5 +228,27 @@
         document.getElementById("p출력").innerText = nameArr.join(" ");
       };
     </script>
+    <h1>우리반 성적</h1>
+    <p id="printAVG">평균 :</p>
+    <label for="성적">성적 </label>
+    <input type="number" id="성적" />
+    <button onclick="addScore();">추가</button>
+    <script>
+      let score = new Array();
+      const addScore = () => {
+        score.push(Number(document.getElementById("성적").value));
+        let scoreSum = 0;
+        let avg = 0;
+        for (let i = 0; i < score.length; i++) {
+          scoreSum += score[i];
+          avg = scoreSum / score.length;
+          console.log(avg);
+        }
+        document.getElementById("printAVG").innerText = "";
+        document.getElementById("printAVG").innerText += `평균 : ${Math.round(
+          avg
+        )}`;
+      };
+    </script>
   </body>
 </html>
