@@ -95,5 +95,97 @@
         }
       };
     </script>
+    <h1>검색이 가능한 표</h1>
+    <button onclick="selectAll();">전체 데이터출력</button>
+    <button onclick="select20();">20대 출력</button>
+    <input type="text" id="searchAddress" />
+    <button onclick="searchByAddress();">주소 검색</button>
+    <table border="1px" id="table3">
+      <tr>
+        <th>이름</th>
+        <th>나이</th>
+        <th>성별</th>
+        <th>주소</th>
+      </tr>
+    </table>
+    <script>
+      let people = [
+        { name: "티백", age: 50, gender: "남", address: "폭스리버" },
+        { name: "세라", age: 20, gender: "여", address: "LA" },
+        { name: "메시", age: 35, gender: "남", address: "마이애미" },
+        { name: "로날도", age: 37, gender: "여", address: "사우디" },
+      ];
+      console.log(people);
+      let selectAll = function () {
+        document.getElementById("table3").innerHTML = `<tr>
+        <th>이름</th>
+        <th>나이</th>
+        <th>성별</th>
+        <th>주소</th></tr>`;
+        for (let i = 0; i < 4; i++) {
+          document.getElementById(
+            "table3"
+          ).innerHTML += `<tr><td>${people[i].name}</td><td>${people[i].age}</td><td>${people[i].gender}</td><td>${people[i].address}</td></tr>`;
+        }
+      };
+
+      let select20 = function () {
+        document.getElementById("table3").innerHTML = `<tr>
+        <th>이름</th>
+        <th>나이</th>
+        <th>성별</th>
+        <th>주소</th>
+        </tr>`;
+        for (let i = 0; i < 4; i++) {
+          if (20 <= people[i].age && people[i].age < 30) {
+            document.getElementById(
+              "table3"
+            ).innerHTML += `<tr><td>${people[i].name}</td><td>${people[i].age}</td><td>${people[i].gender}</td><td>${people[i].address}</td></tr>`;
+          } else {
+            continue;
+          }
+        }
+      };
+
+      let searchByAddress = function () {
+        document.getElementById("table3").innerHTML = `<tr>
+        <th>이름</th>
+        <th>나이</th>
+        <th>성별</th>
+        <th>주소</th>
+        </tr>`;
+        let inputAdd = document.getElementById("searchAddress").value;
+        for (let i = 0; i < 4; i++) {
+          if (inputAdd.includes(people[i].address)) {
+            document.getElementById(
+              "table3"
+            ).innerHTML += `<tr><td>${people[i].name}</td><td>${people[i].age}</td><td>${people[i].gender}</td><td>${people[i].address}</td></tr>`;
+          } else {
+            continue;
+          }
+        }
+        document.getElementById("searchAddress").value = "";
+      };
+    </script>
+    <h1>표 만들기</h1>
+    <button onclick="showChart();">생성</button>
+    <table id="table4" border="1px"></table>
+    <script>
+      let customers = [
+        { name: "김철수", age: 21, gender: "남" },
+        { name: "이영희", age: 36, gender: "여" },
+        { name: "길동", age: 51, gender: "남" },
+      ];
+
+      let showChart = function () {
+        document.getElementById("table4").innerHTML = "";
+        for (let i = 0; i < 3; i++) {
+          console.log(customers[i]);
+          document.getElementById(
+            "table4"
+          ).innerHTML += `<tr><td>${customers[i].name}</td><td>${customers[i].age}</td><td>${customers[i].gender}</td></tr>`;
+        }
+      };
+    </script>
   </body>
 </html>
