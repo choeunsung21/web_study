@@ -79,10 +79,104 @@
           document.getElementById("container").innerHTML = `<h1>타임아웃!</h1>`;
         }, 5000);
       };
-
       let timeoutEnd = function () {
         clearTimeout(globalTime);
       };
     </script>
+    <h1>interval</h1>
+    <button onclick="intervalStart();">시작</button>
+    <button onclick="intervalEnd();">종료</button>
+    <script>
+      let inter;
+      const intervalStart = function () {
+        let num = 10;
+        inter = setInterval(function () {
+          document.getElementById("container").innerHTML += num-- + "<br>";
+        }, 1000);
+      };
+      const intervalEnd = function () {
+        clearInterval(inter);
+      };
+    </script>
+    <h1>쪽지시험</h1>
+    <p><span id="elapsedTime">60</span>초</p>
+    <p>다음 중 프론트엔드 개발자가 다루는 언어가 아닌 것은?</p>
+    <input type="radio" id="CSS" name="answer" value="1" />
+    <label for="CSS">CSS</label><br />
+    <input type="radio" id="HTML" name="answer" value="2" />
+    <label for="HTML">HTML</label><br />
+    <input type="radio" id="JavaScript" name="answer" value="3" />
+    <label for="JavaScript">JavaScript</label><br />
+    <input type="radio" id="Java" name="answer" value="4" />
+    <label for="Java">Java</label><br /><br />
+    <button onclick="testStart();">시작</button>
+    <button onclick="testEnd();">제출</button>
+    <script>
+      let bool = false;
+      const testStart = function () {
+        if (!bool) {
+          bool = true;
+          let et = 60;
+          inter = setInterval(function () {
+            document.getElementById("elapsedTime").innerHTML = et--;
+            if (et == 0) {
+              clearInterval(inter);
+              alert("시간 초과");
+            }
+          }, 1000);
+        } else {
+          alert("이미 실행 중");
+        }
+      };
+      const testEnd = function () {
+        if (bool) {
+          bool = true;
+          clearInterval(inter);
+          let answer = document.querySelector(
+            'input[name="answer"]:checked'
+          ).value;
+          answer = Number(answer);
+          console.log(typeof answer);
+          if (answer == 1) {
+            alert("땡");
+          } else if (answer == 2) {
+            alert("땡");
+          } else if (answer == 3) {
+            alert("땡");
+          } else if (answer == 4) {
+            alert("정답");
+          } else {
+            alert("답을 선택해주세요");
+          }
+          console.log(answer);
+        } else {
+          alert("시작을 눌러주세요");
+        }
+      };
+    </script>
+    <h1 id="before_ele">before</h1>
+    <script>
+      window.onload = function () {
+        console.log(document.getElementById("before_ele").innerText);
+        console.log(document.getElementById("after_ele").innerText);
+      };
+    </script>
+    <h1 id="after_ele">after</h1>
+    <button onclick="printInformation(screen);">screen 객체 출력</button>
+    <button onclick="printInformation(navigator);">navigator 객체 출력</button>
+    <button onclick="printInformation(history);">history 객체 출력</button>
+    <button onclick="printInformation(location);">location 객체 출력</button>
+    <div id="screen_div"></div>
+    <script>
+      let printInformation = function (obj) {
+        const div = document.getElementById("screen_div");
+        for (key in obj) {
+          div.innerHTML += `${key} : ${obj[key]} <br>`;
+        }
+        div.innerHTML += `<br>==========================================================<br>`;
+      };
+    </script>
+    <button onclick="history.back();">이전</button>
+    <button onclick="history.forward();">앞으로</button>
   </body>
 </html>
