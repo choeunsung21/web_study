@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>메뉴 추가</h1>
+    <div id="menuDiv">
+      <ul id="menuList">
+        <li>짜장면</li>
+        <li>볶음밥</li>
+        <li>짬뽕</li>
+      </ul>
+    </div>
+    <input type="text" id="writeMenu" />
+    <button onclick="addMenu();">추가</button>
+    <button onclick="moveMenu();">이동</button>
+    <script>
+      let cntMenu = 3;
+      const addMenu = () => {
+        const newList = document.createElement("li");
+        const newMenu = document.createTextNode(
+          document.getElementById("writeMenu").value
+        );
+        newList.appendChild(newMenu);
+        document.getElementById("menuList").appendChild(newList);
+        document.getElementById("writeMenu").value = "";
+        cntMenu++;
+      };
+      const moveMenu = () => {
+        const insertMenuToDiv = document.getElementById("menuList");
+        const moveMenu =
+          insertMenuToDiv.getElementsByTagName("li")[cntMenu - 1];
+        console.log(moveMenu);
+        insertMenuToDiv.insertAdjacentElement(`afterbegin`, moveMenu);
+      };
+    </script>
+
+    <h1>전자시계</h1>
+    <p id="date"></p>
+    <div id="time" style="font-size: 60px"></div>
+    <script>
+      const nowClock = () => {
+        let now = new Date();
+        let year = now.getFullYear();
+        let month = now.getMonth() + 1;
+        let day = now.getDate();
+        let hour = now.getHours();
+        let minute = now.getMinutes();
+        let second = now.getSeconds();
+
+        const currentDate = `${year}-${month}-${day}`;
+        const currentTime = `${hour}:${minute}:${second}`;
+
+        document.getElementById("date").innerText = currentDate;
+        document.getElementById("time").innerText = currentTime;
+      };
+
+      setInterval(nowClock, 1000);
+      nowClock();
+    </script>
+    <h1>행추가</h1>
+    <input type="number" id="increase" min="1" />
+    <button onclick="addRow();">출력</button>
+    <div><table id="table_div" border="1px"></table></div>
+    <script>
+      let increaseNumber = 1;
+      const addRow = () => {
+        let increase = Number(document.getElementById("increase").value);
+        let table = document.getElementById("table_div");
+        for (let i = 0; i < increase; i++) {
+          const row = document.createElement("tr");
+          for (let j = 0; j < 4; j++) {
+            const cell = document.createElement("td");
+            const textInCell = document.createTextNode(increaseNumber++);
+            cell.appendChild(textInCell);
+            row.appendChild(cell);
+          }
+          table.appendChild(row);
+        }
+      };
+    </script>
+    <h1>왔다갔다 창 만들기</h1>
+    <button onclick="LetThereWindow();">창 만들기</button>
+    <button onclick="autoSize();">자동 변경하기</button>
+    <button onclick="stopAfter2sec();">멈추기</button>
+
+    <script>
+      let interval;
+      const LetThereWindow = function () {
+        newWindow = open("", "_blank", "width=300,height=300");
+        newWindow.document.write(
+          `<div><img src="../resources/coke.png" width="150px" height="150px" /></div>`
+        );
+      };
+      const autoSize = function () {
+        interval = setInterval(() => {
+          newWindow.moveTo(
+            Math.round(Math.round(Math.random() * 900) + 1),
+            Math.round(Math.round(Math.random() * 900) + 1)
+          );
+
+          newWindow.resizeTo(
+            Math.round(
+              Math.round(Math.round(Math.random() * 900) + 1),
+              Math.round(Math.round(Math.random() * 900) + 1)
+            )
+          );
+        }, 1000);
+      };
+      const stopAfter2sec = function () {
+        clearInterval(interval);
+        setTimeout(() => {
+          newWindow.close();
+        }, 2000);
+      };
+    </script>
+  </body>
+</html>
