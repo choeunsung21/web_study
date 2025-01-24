@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dynamic Table</title>
+  </head>
+  <body>
+    <h1>rainbowColor</h1>
+    <form id="colorFrm">
+      <table></table>
+    </form>
+    <script>
+      // 데이터를 기반으로 테이블 생성
+      const rows = ["하나", "둘", "셋", "넷", "다섯", "여섯", "일곱"];
+      const columns = ["빨", "주", "노", "초", "파", "남", "보"];
+
+      // 테이블 생성 함수
+      function createTable() {
+        const table = document.querySelector("form#colorFrm table");
+        table.border = "1";
+        table.style.borderCollapse = "collapse";
+
+        // 첫 번째 행 (전체 선택)
+        const headerRow = document.createElement("tr");
+        const headerCell = document.createElement("td");
+        headerCell.textContent = "전체선택:";
+        headerRow.appendChild(headerCell);
+
+        columns.forEach((columnName, columnIndex) => {
+          const cell = document.createElement("td");
+          const checkbox = document.createElement("input");
+          checkbox.type = "checkbox";
+          checkbox.dataset.column = columnIndex; // 열 번호 저장
+          checkbox.addEventListener("change", (e) => toggleColumn(e.target));
+
+          cell.appendChild(checkbox);
+          cell.appendChild(document.createTextNode(" " + columnName)); // 글씨 추가
+          headerRow.appendChild(cell);
+        });
+
+        table.appendChild(headerRow);
+
+        // 각 행 생성
+        rows.forEach((rowName, rowIndex) => {
+          const row = document.createElement("tr");
+          const rowHeader = document.createElement("td");
+          rowHeader.textContent = rowName;
+          row.appendChild(rowHeader);
+
+          columns.forEach((columnName, columnIndex) => {
+            const cell = document.createElement("td");
+            const checkbox = document.createElement("input");
+            checkbox.type = "checkbox";
+
+            // 같은 행에서 1개만 선택 가능하도록 이벤트 추가
+            checkbox.addEventListener("change", () =>
+              toggleRow(rowIndex, columnIndex)
+            );
+
+            cell.appendChild(checkbox);
+            cell.appendChild(document.createTextNode(" " + columnName)); // 글씨 추가
+            row.appendChild(cell);
+          });
+
+          table.appendChild(row);
+        });
+
+        // Submit과 Reset 버튼 추가
+        const buttonRow = document.createElement("tr");
+        const buttonCell = document.createElement("td");
+        buttonCell.colSpan = columns.length + 1;
+        buttonCell.style.textAlign = "center";
+
+        const submitButton = document.createElement("button");
+        submitButton.textContent = "submit";
+        submitButton.type = "button";
+        submitButton.onclick = () => alert("Submitted!");
+        const resetButton = document.createElement("button");
+        resetButton.textContent = "reset";
+        resetButton.type = "button";
+        resetButton.onclick = () => resetTable(table);
+
+        buttonCell.appendChild(submitButton);
+        buttonCell.appendChild(resetButton);
+        buttonRow.appendChild(buttonCell);
+        table.appendChild(buttonRow);
+      }
+
+      // 특정 열의 체크박스 전체 선택 / 해제 함수
+      function toggleColumn(headerCheckbox) {
+        const columnIndex = headerCheckbox.dataset.column;
+        const table = headerCheckbox.closest("table");
+
+        // 각 행에서 동일 열의 체크박스를 선택 / 해제
+        const rows = table.querySelectorAll("tr:not(:first-child)");
+        rows.forEach((row, rowIndex) => {
+          const checkbox = row.querySelectorAll("td input[type='checkbox']")[
+            columnIndex
+          ];
+
+          if (headerCheckbox.checked) {
+            // 선택 시, 해당 행에서 다른 체크박스는 모두 해제
+            toggleRow(rowIndex, columnIndex);
+            checkbox.checked = true;
+          } else {
+            // 해제 시, 해당 열 체크박스만 해제
+            checkbox.checked = false;
+          }
+        });
+
+        // 첫 번째 행에서 중복 선택 방지: 다른 열은 체크 해제
+        const headerRow = table.querySelector("tr");
+        const headerCheckboxes = headerRow.querySelectorAll(
+          "input[type='checkbox']"
+        );
+        headerCheckboxes.forEach((checkbox, idx) => {
+          if (idx !== columnIndex) {
+            checkbox.checked = false; // 다른 열 체크박스 해제
+          }
+        });
+      }
+
+      // 같은 행에서 하나만 선택 가능하도록 하는 함수
+      function toggleRow(rowIndex, columnIndex) {
+        const table = document.querySelector("form#colorFrm table");
+        const row = table.querySelectorAll("tr")[rowIndex + 1]; // 첫 번째 헤더행 제외
+        const checkboxes = row.querySelectorAll("td input[type='checkbox']");
+        checkboxes.forEach((checkbox, idx) => {
+          if (idx !== columnIndex) {
+            checkbox.checked = false;
+          }
+        });
+      }
+
+      // 테이블 초기화 함수
+      function resetTable(table) {
+        const checkboxes = table.querySelectorAll('input[type="checkbox"]');
+        checkboxes.forEach((checkbox) => {
+          checkbox.checked = false;
+        });
+      }
+
+      // 테이블 생성 실행
+      createTable();
+    </script>
+  </body>
+</html>
