@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="../resources/jquery-3.7.1.js"></script>
+  </head>
+  <body>
+    <h1>요소 탐색 총정리</h1>
+    <div id="prompt_div">
+      <h2>promt로 입력받기</h2>
+      <button>실행</button>
+      <div></div>
+    </div>
+    <script>
+      $(function () {
+        $("#prompt_div > button").on("click", function () {
+          let inputText = prompt("메시지를 입력하세요");
+          if (inputText != null) {
+            $("#prompt_div > div").text(inputText);
+          }
+        });
+      });
+    </script>
+    <h1>랜덤 뽑기</h1>
+    <button id="randomNumber">실행하기</button>
+    <div id="randomNumberDiv"></div>
+    <script>
+      $("#randomNumber").on("click", function () {
+        let randomArr = [];
+        for (let i = 0; i < 5; i++) {
+          randomArr[i] = Math.floor(Math.random() * 100) + 1;
+        }
+        let randomNumberResult = randomArr.sort().reverse().join(" ");
+        $("#randomNumberDiv").text(randomNumberResult);
+      });
+    </script>
+    <h1>출석부</h1>
+    <button id="printAttendance">출력</button>
+    <div id="attendanceList"></div>
+    <script>
+      const arr = [
+        { name: "김철수", age: 20, address: "서울" },
+        { name: "이영희", age: 30, address: "부산" },
+        { name: "최철수", age: 40, address: "광주" },
+      ];
+      $(function () {
+        $("#printAttendance").on("click", function () {
+          $.each(arr, function (key, value) {
+            $("#attendanceList").append(
+              `${value.name}, ${value.age}, ${value.address}<br>`
+            );
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
