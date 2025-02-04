@@ -55,5 +55,35 @@
         });
       });
     </script>
+    <h1>과일 가게 할인</h1>
+    <ul id="fruitList"></ul>
+    <button id="fruitDiscount">할인 적용</button>
+    <script>
+      const products = {
+        사과: 3000,
+        바나나: 2000,
+        체리: 8000,
+        포도: 7000,
+        수박: 5000,
+      };
+      $.each(products, function (key, value) {
+        $("#fruitList").append(`<li>${key}: ${value}원</li>`);
+      });
+      $(function () {
+        $("#fruitDiscount").on("click", function () {
+          let txt = "";
+          $.each(products, function (key, value) {
+            let percent = 1;
+            if (value >= 7000) {
+              percent = 0.8;
+            } else if (value >= 5000) {
+              percent = 0.9;
+            }
+            txt += `<li>${key}: ${value * percent}원</li>`;
+          });
+          $("#fruitList").html(txt);
+        });
+      });
+    </script>
   </body>
 </html>

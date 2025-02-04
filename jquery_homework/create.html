@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="../resources/jquery-3.7.1.js"></script>
+  </head>
+  <body>
+    <h1>10개까지 추가</h1>
+    <button id="addBtn">추가</button><br />
+    <script>
+      $("#addBtn").click(function () {
+        if ($("input[type=text]").length < 10) {
+          $("body").append(`<input type="text"><br>`);
+        } else {
+          alert("10개까지만 추가 할 수 있습니다.");
+        }
+      });
+    </script>
+    <h1>게시판에 글쓰기</h1>
+    <div>
+      <input type="radio" name="radio" id="title1" value="1" /><label
+        for="title1"
+        >제목1</label
+      ><br />
+      <input type="radio" name="radio" id="title2" value="2" /><label
+        for="title2"
+        >제목2</label
+      ><br />
+      <input type="radio" name="radio" id="title3" value="3" /><label
+        for="title3"
+        >제목3</label
+      ><br />
+      <input type="radio" name="radio" id="text" value="4" /><label for="text"
+        >문단</label
+      ><br />
+      <label for="inputText">내용</label>
+      <input type="text" id="inputText" /><br />
+    </div>
+    <script>
+      $(function () {
+        $("#inputText").keyup(function (e) {
+          if (e.key == "Enter") {
+            let inputText = $("#inputText").val();
+            $("#inputText").val("");
+            let radioVal = $("input[type=radio]:checked").val();
+            if (radioVal == 1) {
+              $("div").append(`<h1>${inputText}</h1>`);
+            } else if (radioVal == 2) {
+              $("div").append(`<h2>${inputText}</h2>`);
+            } else if (radioVal == 3) {
+              $("div").append(`<h3>${inputText}</h3>`);
+            } else if (radioVal == 4) {
+              $("div").append(`<p>${inputText}</p>`);
+            } else {
+              alert("타입을 선택해주세요");
+            }
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
